@@ -1,14 +1,8 @@
-export default class Slider {
-  /**
-   * Класс создающий слайдер
-   * @param {string} page страница слайда
-   * @param {string} btns кнопка переключения
-   */
-  constructor(page, btns){
-      this.page = document.querySelector(page);
-      this.slides = this.page.children;
-      this.btns = document.querySelectorAll(btns);
-      this.slideIndex = 1;
+import Slider from "./slider";
+
+export default class MainSlider extends Slider {
+  constructor(page, btns) {
+    super(page, btns);
   }
 
   /**
