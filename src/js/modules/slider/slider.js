@@ -1,14 +1,22 @@
 export default class Slider {
   /**
    * Класс создающий слайдер
-   * @param {string} page страница слайда
+   * @param {string} container страница слайда
    * @param {string} btns кнопка переключения
    */
   // Используем диструктуризацию в конструкторе
-  constructor({page = '', btns = '', next = '', prev = ''} = {}){
-      this.page = document.querySelector(page);
-      this.slides = this.page.children;
-      this.btns = document.querySelectorAll(btns);
-      this.slideIndex = 1;
+  constructor({
+    container = null, 
+    btns = null, 
+    next = null, 
+    prev = null,
+  } = {}
+  ){
+    this.container = document.querySelector(container);
+    this.slides = this.container.children;
+    this.btns = document.querySelectorAll(btns);
+    this.prev = document.querySelector(prev);
+    this.next = document.querySelector(next);
+    this.slideIndex = 1;
   }
 }
