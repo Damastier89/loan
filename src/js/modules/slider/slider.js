@@ -10,6 +10,9 @@ export default class Slider {
     btns = null, 
     next = null, 
     prev = null,
+    activeClass = '',
+    animation,
+    autoplay,
   } = {}
   ){
     this.container = document.querySelector(container);
@@ -17,6 +20,9 @@ export default class Slider {
     this.btns = document.querySelectorAll(btns);
     this.prev = document.querySelector(prev);
     this.next = document.querySelector(next);
+    this.activeClass = activeClass;
+    this.animation = animation;
+    this.autoplay = autoplay;
     this.slideIndex = 1;
   }
 }
