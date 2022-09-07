@@ -24,6 +24,7 @@ window.addEventListener('DOMContentLoaded', () => {
     next: '.modules__info-btns .slick-next',
     activeClass: 'card-active',
     animation: true,
+    autoplay: true,
   });
   modulesSlider.init();
 
