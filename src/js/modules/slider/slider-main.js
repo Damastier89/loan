@@ -49,26 +49,49 @@ export default class MainSlider extends Slider {
     this.showSlides(this.slideIndex += n);
   }
 
+  bindTriggers() {
+    this.btns.forEach(item => {
+      item.addEventListener('click', () => {
+        this.plusSlides(1);
+      });
+
+      // Возвращаем слайдер в исходное состояние при нажатии на логотип
+      item.parentNode.previousElementSibling.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.slideIndex = 1;
+        this.showSlides(this.slideIndex);
+      });
+    });
+  }
+
+  checkButtons() {
+    document.querySelectorAll('.prevmodule').forEach(item => {
+      item.addEventListener('click', (event) => {
+        event.stopPropagation();
+        event.preventDefault();
+        this.plusSlides(-1);
+      });
+    });
+
+    document.querySelectorAll('.nextmodule').forEach(item => {
+      item.addEventListener('click', (event) => {
+        event.stopPropagation();
+        event.preventDefault();
+        this.plusSlides(1);
+      });
+    });
+  }
+
   render() {
-    try {
+    if (this.container) {
       try {
         this.hanson = document.querySelector('.hanson');
       } catch(error) { console.log(`${error}`) }
       
-      this.btns.forEach(item => {
-        item.addEventListener('click', () => {
-          this.plusSlides(1);
-        });
-  
-        // Возвращаем слайдер в исходное состояние при нажатии на логотип
-        item.parentNode.previousElementSibling.addEventListener('click', (e) => {
-          e.preventDefault();
-          this.slideIndex = 1;
-          this.showSlides(this.slideIndex);
-        });
-      });
-  
+      this.bindTriggers();
       this.showSlides(this.slideIndex);
-    } catch(e) {};
+      this.checkButtons();
+    };
   }
+  
 }
