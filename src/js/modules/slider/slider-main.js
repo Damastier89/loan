@@ -51,22 +51,24 @@ export default class MainSlider extends Slider {
 
   render() {
     try {
-      this.hanson = document.querySelector('.hanson');
-    } catch(error) { console.log(`${error}`) }
-    
-    this.btns.forEach(item => {
-      item.addEventListener('click', () => {
-        this.plusSlides(1);
+      try {
+        this.hanson = document.querySelector('.hanson');
+      } catch(error) { console.log(`${error}`) }
+      
+      this.btns.forEach(item => {
+        item.addEventListener('click', () => {
+          this.plusSlides(1);
+        });
+  
+        // Возвращаем слайдер в исходное состояние при нажатии на логотип
+        item.parentNode.previousElementSibling.addEventListener('click', (e) => {
+          e.preventDefault();
+          this.slideIndex = 1;
+          this.showSlides(this.slideIndex);
+        });
       });
-
-      // Возвращаем слайдер в исходное состояние при нажатии на логотип
-      item.parentNode.previousElementSibling.addEventListener('click', (e) => {
-        e.preventDefault();
-        this.slideIndex = 1;
-        this.showSlides(this.slideIndex);
-      });
-    });
-
-    this.showSlides(this.slideIndex);
+  
+      this.showSlides(this.slideIndex);
+    } catch(e) {};
   }
 }
